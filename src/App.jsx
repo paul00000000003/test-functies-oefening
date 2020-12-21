@@ -13,7 +13,7 @@ function App() {
   const counter = useSelector((state) => state.counter);
   const boodschappenlijst = useSelector((state) => state.boodschappenlijst);
   const dispatch = useDispatch();
-  const [boodschappenWeergave, setBoodschappenWeergave] = useState([]);
+  const [item_title, setItem] = useState("");
 
   let text = "Log in";
   if (ingelogd) text = "Log uit";
@@ -21,13 +21,13 @@ function App() {
   const voegItemToe = (item) => {
     console.log("het begin " + item);
     dispatch(ItemToevoegen(item));
-    setBoodschappenWeergave(
-      boodschappenlijst.map((element, index) => (
-        <BoodschappenRegel key={index} element={element.title} />
-      ))
-    );
+    setItem(item);
     document.getElementById("item").value = "";
   };
+
+  const boodschappenWeergave = boodschappenlijst.map((element, index) => (
+    <BoodschappenRegel key={index} element={element.title} />
+  ));
 
   return (
     <div className="App">
