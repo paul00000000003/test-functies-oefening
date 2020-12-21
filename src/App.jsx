@@ -14,27 +14,20 @@ function App() {
   const boodschappenlijst = useSelector((state) => state.boodschappenlijst);
   const dispatch = useDispatch();
   const [boodschappenWeergave, setBoodschappenWeergave] = useState([]);
+
   let text = "Log in";
   if (ingelogd) text = "Log uit";
 
   const voegItemToe = (item) => {
     console.log("het begin " + item);
     dispatch(ItemToevoegen(item));
-    //   setBoodschappenWeergave(
-    //     boodschappenlijst.map((element, index) => (
-    //       <BoodschappenRegel key={index} element={element.title} />
-    //     ))
-    //   );
-  };
-
-  useEffect(
     setBoodschappenWeergave(
       boodschappenlijst.map((element, index) => (
         <BoodschappenRegel key={index} element={element.title} />
       ))
-    ),
-    []
-  );
+    );
+    document.getElementById("item").value = "";
+  };
 
   return (
     <div className="App">
